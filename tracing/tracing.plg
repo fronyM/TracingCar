@@ -3,7 +3,46 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-V:\tracing\tracing.uvproj
+H:\zigbee\HNEDC\tracing\tracing.uvproj
 Project File Date:  11/03/2012
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(10): error C202: 'u': undefined identifier
+compiling tracing.c...
+tracing.c(3): warning C318: can't open file 'drivers.h'
+TRACING.C(11): error C202: 'u': undefined identifier
+TRACING.C(34): error C202: 'r': undefined identifier
+TRACING.C(36): error C202: 'l': undefined identifier
+TRACING.C(39): error C202: 'u': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling tracing.c...
+tracing.c(3): warning C318: can't open file 'drivers.h'
+TRACING.C(11): error C202: 'u': undefined identifier
+TRACING.C(34): error C202: 'r': undefined identifier
+TRACING.C(36): error C202: 'l': undefined identifier
+TRACING.C(39): error C202: 'u': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling tracing.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FOUND_PATH?TRACING
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TRACING?TRACING
+*** WARNING L10: CANNOT DETERMINE ROOT SEGMENT
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _ENGINE
+    MODULE:  tracing.obj (TRACING)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _ENGINE
+    MODULE:  tracing.obj (TRACING)
+    ADDRESS: 0074H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _ENGINE
+    MODULE:  tracing.obj (TRACING)
+    ADDRESS: 0060H
+Program Size: data=10.0 xdata=0 code=121
+"tracing" - 0 Error(s), 6 Warning(s).

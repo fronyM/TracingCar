@@ -1,6 +1,6 @@
 #include "tracing.h"
 #include "types.h"
-#include "drivers.h"
+#include "../drivers.h"
 
 
 
@@ -27,16 +27,16 @@ void tracing(u8 const sum)
 	u8 count = 0; //已寻线数
 	while(sum != count){		//未寻到sum条线
 		if(((SENSOR^4 && SENSOR^5) || (SENSOR^0 && SENSOR^1)) && (SENSOR^2 && SENSOR^3)){
-			count++;
+			count++;	 
 		}else{
 			if((SENSOR^2 && SENSOR^3)){		//不在线上
 				if(SENSOR^1){	//左偏移
-					engine(r, 80, 70);
+					engine(r, 100, 100);
 				}else if(SENSOR^4){	//右偏移
-					engine(l, 70, 80);				
+					engine(l, 100, 100);				
 				}	
 			}else{					//在线上
-				engine(u, 100, 100);
+				engine(r, 100, 100);
 			}
 		}
 	}	

@@ -347,11 +347,6 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
               <FileName>tracing.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\tracing.c</FilePath>

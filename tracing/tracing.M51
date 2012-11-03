@@ -1,20 +1,18 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        11/02/2012  16:20:56  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/03/2012  16:07:40  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-E:\KEIL\C51\BIN\BL51.EXE .\main.obj, .\tracing.obj TO tracing
+E:\KEIL\C51\BIN\BL51.EXE tracing.obj TO tracing
 
 
 MEMORY MODEL: SMALL
 
 
 INPUT MODULES INCLUDED:
-  .\main.obj (MAIN)
-  .\tracing.obj (TRACING)
-  E:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  tracing.obj (TRACING)
 
 
-LINK MAP OF MODULE:  tracing (MAIN)
+LINK MAP OF MODULE:  tracing (TRACING)
 
 
             TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
@@ -22,59 +20,101 @@ LINK MAP OF MODULE:  tracing (MAIN)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            IDATA   0008H     0001H     UNIT         ?STACK
+            DATA    0008H     0002H     UNIT         ?DT?_TRACING?TRACING
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
-            CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     000CH     UNIT         ?C_C51STARTUP
-            CODE    000FH     0004H     UNIT         ?PR?MAIN?MAIN
-            CODE    0013H     0001H     UNIT         ?PR?LOCATE?TRACING
+            CODE    0000H     0065H     UNIT         ?PR?_TRACING?TRACING
+            CODE    0065H     0014H     UNIT         ?PR?_FOUND_PATH?TRACING
 
 
 
-OVERLAY MAP OF MODULE:   tracing (MAIN)
+OVERLAY MAP OF MODULE:   tracing (TRACING)
 
 
 SEGMENT
   +--> CALLED SEGMENT
 ---------------------
-?C_C51STARTUP
-  +--> ?PR?MAIN?MAIN
+
+
+UNRESOLVED EXTERNAL SYMBOLS:
+   _ENGINE
 
 
 
-SYMBOL TABLE OF MODULE:  tracing (MAIN)
+SYMBOL TABLE OF MODULE:  tracing (TRACING)
 
   VALUE           TYPE          NAME
   ----------------------------------
 
-  -------         MODULE        MAIN
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  D:0090H         PUBLIC        P1
-  C:000FH         PUBLIC        main
-  -------         PROC          MAIN
-  C:000FH         LINE#         4
-  C:000FH         LINE#         5
-  C:000FH         LINE#         6
-  C:0012H         LINE#         7
-  -------         ENDPROC       MAIN
-  -------         ENDMOD        MAIN
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/02/2012  16:20:56  PAGE 2
-
-
-
   -------         MODULE        TRACING
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:0013H         PUBLIC        Locate
-  -------         PROC          LOCATE
-  C:0013H         LINE#         3
-  C:0013H         LINE#         4
-  C:0013H         LINE#         6
-  -------         ENDPROC       LOCATE
+  D:0090H         PUBLIC        P1
+  C:0065H         PUBLIC        _found_path
+  C:0000H         PUBLIC        _tracing
+  -------         PROC          _FOUND_PATH
+  D:0007H         SYMBOL        locate
+  C:0065H         LINE#         7
+  C:0065H         LINE#         8
+  C:0065H         LINE#         9
+  C:0068H         LINE#         10
+  C:006DH         LINE#         11
+  C:0076H         LINE#         12
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/03/2012  16:07:40  PAGE 2
+
+
+  C:0078H         LINE#         13
+  C:0078H         LINE#         15
+  C:0078H         LINE#         17
+  C:0078H         LINE#         18
+  -------         ENDPROC       _FOUND_PATH
+  -------         PROC          _TRACING
+  D:0008H         SYMBOL        sum
+  -------         DO            
+  D:0009H         SYMBOL        count
+  -------         ENDDO         
+  C:0000H         LINE#         25
+  C:0002H         LINE#         26
+  C:0002H         LINE#         27
+  C:0005H         LINE#         28
+  C:000BH         LINE#         29
+  C:002DH         LINE#         30
+  C:002FH         LINE#         31
+  C:0031H         LINE#         32
+  C:003DH         LINE#         33
+  C:0043H         LINE#         34
+  C:0049H         LINE#         35
+  C:0051H         LINE#         36
+  C:0057H         LINE#         37
+  C:0057H         LINE#         38
+  C:0059H         LINE#         39
+  C:0062H         LINE#         40
+  C:0062H         LINE#         41
+  C:0062H         LINE#         42
+  C:0064H         LINE#         43
+  -------         ENDPROC       _TRACING
   -------         ENDMOD        TRACING
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?LOCATE?TRACING
+    SEGMENT: ?PR?_FOUND_PATH?TRACING
 
-Program Size: data=9.0 xdata=0 code=20
-LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TRACING?TRACING
+
+*** WARNING L10: CANNOT DETERMINE ROOT SEGMENT
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _ENGINE
+    MODULE:  tracing.obj (TRACING)
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _ENGINE
+    MODULE:  tracing.obj (TRACING)
+    ADDRESS: 0074H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _ENGINE
+    MODULE:  tracing.obj (TRACING)
+    ADDRESS: 0060H
+
+Program Size: data=10.0 xdata=0 code=121
+LINK/LOCATE RUN COMPLETE.  6 WARNING(S),  0 ERROR(S)

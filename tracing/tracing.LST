@@ -1,0 +1,56 @@
+C51 COMPILER V9.00   TRACING                                                               11/03/2012 06:57:35 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE TRACING
+OBJECT MODULE PLACED IN tracing.OBJ
+COMPILER INVOKED BY: e:\Keil\C51\BIN\C51.EXE tracing.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "tracing.h"
+   2          #include "types.h"
+   3          
+   4          u8 count = 0; //已寻线数
+   5          
+   6          void found_path(u8 const locate)
+   7          {
+   8   1              if(locate == 0 ){               //stat
+   9   2                      while(SENSOR == 0x3F){
+  10   3                              run(u, 50);     
+*** ERROR C202 IN LINE 10 OF TRACING.C: 'u': undefined identifier
+  11   3                      }
+  12   2              }else if(locate == 1){  //temp stopA
+  13   2                      
+  14   2              }else if(locate == 2){  //temp stopB
+  15   2              
+  16   2              }               
+  17   1      }
+  18          /*
+  19          *       sum     要寻线数
+  20          *
+  21          *
+  22          *
+  23          */
+  24          void tracing(u8 const sum)
+  25          {
+  26   1              while(sum != count){            //未寻到sum条线
+  27   2                      if(((SENSOR^4 && SENSOR^5) || (SENSOR^0 && SENSOR^1)) && (SENSOR^2 && SENSOR^3)){
+  28   3                              count++;
+  29   3                      }else{
+  30   3                              if((SENSOR^2 && SENSOR^3)){             //不在线上
+  31   4                                      if(SENSOR^1){   //左偏移
+  32   5                                              motor(r, 50);
+*** ERROR C202 IN LINE 32 OF TRACING.C: 'r': undefined identifier
+  33   5                                      }else if(SENSOR^4){     //右偏移
+  34   5                                              motor(l,50);                            
+*** ERROR C202 IN LINE 34 OF TRACING.C: 'l': undefined identifier
+  35   5                                      }       
+  36   4                              }else{                                  //在线上
+  37   4                                      run(u, 50);
+*** ERROR C202 IN LINE 37 OF TRACING.C: 'u': undefined identifier
+  38   4                              }
+  39   3                      }
+  40   2              }       
+  41   1      }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  4 ERROR(S)

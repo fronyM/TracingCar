@@ -171,4 +171,5 @@ Drivers
 *.uvopt
 *.uvproj
 *.LST
-types.h
+zigbee
+MMA7260

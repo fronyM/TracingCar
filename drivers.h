@@ -10,6 +10,7 @@ sbit B2=P1^3;	   // right engine negative input
 sbit EN1=P1^4;   // enable for left engine
 sbit EN2=P1^5;   // enable for right engine
 
+
 extern unsigned char powerL = 0, powerR = 0;
 
 extern void engine(u8 act, u8 power1, u8 power2);

@@ -22,11 +22,11 @@ void engine(u8 act, u8 power1, u8 power2)
     powerL = power1;
 	powerR = power2;
 	switch(act) {
-	    case 0: A1 = 1; A2 = 0; B1 = 1; B2 = 0; break;
-		case 1: A1 = 0; A2 = 0; B1 = 1; B2 = 0; break;
-		case 2: A1 = 1; A2 = 0; B1 = 0; B2 = 0; break;
-		case 3: A1 = 0; A2 = 1; B1 = 0; B2 = 1; break;
-		case 4: A1 = 0; A2 = 0; B1 = 0; B2 = 0; break;
+	    case u: A1 = 1; A2 = 0; B1 = 1; B2 = 0; break;
+		case d: A1 = 0; A2 = 0; B1 = 1; B2 = 0; break;
+		case l: A1 = 1; A2 = 0; B1 = 0; B2 = 0; break;
+		case r: A1 = 0; A2 = 1; B1 = 0; B2 = 1; break;
+		case s: A1 = 0; A2 = 0; B1 = 0; B2 = 0; break;
 	}
 }
 

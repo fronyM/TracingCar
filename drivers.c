@@ -2,7 +2,6 @@
 #include "drivers.h"
 #include "types.h"
 
-u8 powerL = 0, powerR = 0;
 
 void timerInit()
 {
@@ -18,19 +17,22 @@ void timerInit()
     TR1 = 1;
 }
 
-void engine(u8 act, u8 power1, u8 power2)
+void engine(u8 act, u8 power)
 {
-    powerL = power1;
-	powerR = power2;
 	switch(act) {
-	    case u: A1 = 1; A2 = 0; B1 = 1; B2 = 0; break;
-		case d: A1 = 0; A2 = 0; B1 = 1; B2 = 0; break;
-		case l: A1 = 1; A2 = 0; B1 = 0; B2 = 0; break;
-		case r: A1 = 0; A2 = 1; B1 = 0; B2 = 1; break;
-		case s: A1 = 1; A2 = 1; B1 = 1; B2 = 1; break;
+	    case FORWARD : A1 = 1; A2 = 0; B1 = 1; B2 = 0; powerL = power; powerR = power; break;
+		case BACKWARD: A1 = 0; A2 = 0; B1 = 1; B2 = 0; powerL = power; powerR = power; break;
+		case LEFT    : A1 = 1; A2 = 0; B1 = 1; B2 = 1; powerL = power; powerR = 0; break;
+		case RIGHT   : A1 = 1; A2 = 1; B1 = 1; B2 = 0; powerL = 0; powerR = power; break;
+		case STOP    : A1 = 1; A2 = 1; B1 = 1; B2 = 1; powerL = power; powerR = power; break;
 	}
 }
 
+//void main(){
+//	timerInit();
+//	engine(0, 20, 10);
+//	while(1);
+//}
 
 void timer0() interrupt 1
 {

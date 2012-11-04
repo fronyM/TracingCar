@@ -11,13 +11,13 @@ sbit sensor_5 = SENSOR^5;
 
 void found_path(u8 const locate)
 {
-	if(locate == 0 ){		//stat
+	if(locate == STAT ){		//stat
 		while(SENSOR == ~0x3F){
 			engine(FORWARD, 100);	
 		}
-	}else if(locate == 1){	//temp stopA
+	}else if(locate == TEMPA){	//temp stopA
 		
-	}else if(locate == 2){	//temp stopB
+	}else if(locate == TEMPB){	//temp stopB
 	
 	}		
 }

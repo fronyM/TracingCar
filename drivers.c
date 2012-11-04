@@ -42,9 +42,9 @@ void timer0() interrupt 1
     else
 	    count = 0;
     if(count < powerL)
-	    EN1 = 1;
-    else
 	    EN1 = 0;
+    else
+	    EN1 = 1;
 }
 
 void timer1() interrupt 3
@@ -55,7 +55,7 @@ void timer1() interrupt 3
     else
 	    count = 0;
     if(count < powerR)
-	    EN2 = 1;
-    else
 	    EN2 = 0;
+    else
+	    EN2 = 1;
 }

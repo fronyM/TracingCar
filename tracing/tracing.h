@@ -6,10 +6,14 @@
 #define __TRACING_H_
 
 #define SENSOR	P2	//P2^0-p2^5
+#define L		0
+#define	R		1
+#define	BACK	3
 
 extern void found_path(u8 const);
 extern void Locate(u8 const);
 extern void tracing(u8 const);
+void turn(u8);
 
 
 #endif

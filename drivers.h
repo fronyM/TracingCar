@@ -1,3 +1,4 @@
+#include <reg51.h>
 #include "types.h"
 #ifndef __DRIVERS_H__
 #define __DRIVERS_H__
@@ -19,7 +20,7 @@ sbit EN2=P1^5;   // enable for right engine
 
 extern void timerInit();
 
-extern unsigned char powerL = 0, powerR = 0;
+extern u8 powerL, powerR;
 
 extern void engine(u8 act, u8 power);
 #endif

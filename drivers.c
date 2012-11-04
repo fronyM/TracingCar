@@ -1,7 +1,7 @@
-#include <regx52.h>
 #include "drivers.h"
 #include "types.h"
 
+u8 powerL = 0, powerR = 0;
 
 void timerInit()
 {

@@ -8,8 +8,8 @@ sfr CCON   = 0xD8;   //PCA 控制寄存器。    CF    CR    -     -     -     -    CC
 //-----------------------
 sbit CF     = CCON^7; //PCA计数器溢出标志,由硬件或软件置位,必须由软件清0。
 sbit CR     = CCON^6; //1:允许 PCA 计数器计数, 必须由软件清0。
-//-
-//-
+//
+//
 sbit CCF1   = CCON^1; //PCA 模块1 中断标志, 由硬件置位, 必须由软件清0。
 sbit CCF0   = CCON^0; //PCA 模块0 中断标志, 由硬件置位, 必须由软件清0。
 //-----------------------
@@ -93,7 +93,7 @@ sbit EN2=P1^5;   // enable for right engine
 #define	RIGHT	    3
 #define	STOP	    4
 
-extern void timerInit();
+extern void PWMInit();
 
 extern void engine(u8 act, u8 power);
 #endif

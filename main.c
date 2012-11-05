@@ -18,9 +18,11 @@ void init()
 void main()
 {
 	init();
+//	engine(FORWARD, 100);
+//	engine(RIGHT, 100);	
 	while(1)
 	{
 		tracing(1);
-		turn(R);
+//		turn(R);
 	}	
 }

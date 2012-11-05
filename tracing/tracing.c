@@ -30,9 +30,12 @@ void found_path(u8 const locate)
 void tracing(u8 const sum)
 {
 	u8 count = 0; //已寻线数
-	while(sum != count){		//未寻到sum条线
-		if(((sensor_4 && sensor_5) || (sensor_0 && sensor_1)) && (sensor_2 && sensor_3)){
+//	while(sum != count){		//未寻到sum条线
+	while(1){
+//		if(((sensor_4 && sensor_5) || (sensor_0 && sensor_1)) && (sensor_2 && sensor_3)){
+		if(sensor_2 && sensor_3){
 			engine(FORWARD, 100);
+//			while((sensor_4 && sensor_5) || (sensor_0 && sensor_1));
 			count++;
 				 
 		}else{
@@ -45,7 +48,9 @@ void tracing(u8 const sum)
 			}
 		}
 	}
-	engine(STOP, 100);	
+	//engine(STOP, 100);
+	engine(FORWARD, 100);
+	
 }
 void turn(u8 direction)
 {

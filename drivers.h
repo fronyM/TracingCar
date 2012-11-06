@@ -83,9 +83,9 @@ sfr PCA_PWM1 = 0xF3; //PCA Ä£¿é1 PWM ¼Ä´æÆ÷¡£            -   -   -   -   -   -  
 sbit A1=P1^0;    // left engine postive input
 sbit A2=P1^1;	   // left engine negative input
 sbit B1=P1^2;	   // right engine postive input 
-sbit B2=P1^3;	   // right engine negative input
-sbit EN1=P1^4;   // enable for left engine
-sbit EN2=P1^5;   // enable for right engine
+sbit B2=P1^5;	   // right engine negative input
+sbit EN1=P1^3;   // enable for left engine
+sbit EN2=P1^4;   // enable for right engine
 
 #define FORWARD	    0
 #define BACKWARD	1

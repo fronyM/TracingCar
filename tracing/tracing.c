@@ -13,7 +13,7 @@ void found_path(u8 const locate)
 {
 	if(locate == STAT ){		//stat
 		while(SENSOR == ~0x3F){
-			engine(FORWARD, 100);	
+			engine(FORWARD, 99);	
 		}
 	}else if(locate == TEMPA){	//temp stopA
 		
@@ -21,6 +21,23 @@ void found_path(u8 const locate)
 	
 	}		
 }
+
+void modulation()
+{
+	if(sensor_2 && sensor_3){
+		engine(FORWARD, 99);						 
+	}else{
+		while(!(sensor_2 && sensor_3)){		//不在线上
+			if(sensor_0 || sensor_1){	//右偏移
+				engine(RIGHT, 99);		//驱动右电机
+			}else if(sensor_4 || sensor_5){	//左偏移
+				engine(LEFT, 99);		//驱动左电机		
+			}	
+		}
+	}
+	engine(FORWARD, 99);	
+}
+
 /*
 * 	sum	要寻线数
 *
@@ -30,44 +47,33 @@ void found_path(u8 const locate)
 void tracing(u8 const sum)
 {
 	u8 count = 0; //已寻线数
-//	while(sum != count){		//未寻到sum条线
-	while(1){
-//		if(((sensor_4 && sensor_5) || (sensor_0 && sensor_1)) && (sensor_2 && sensor_3)){
-		if(sensor_2 && sensor_3){
-			engine(FORWARD, 100);
-//			while((sensor_4 && sensor_5) || (sensor_0 && sensor_1));
+	while(sum != count){		//未寻到sum条线
+		if(((sensor_4 && sensor_5) || (sensor_0 && sensor_1)) && (sensor_2 && sensor_3)){
+			while( sensor_0 || sensor_1 || sensor_4 || sensor_5)
+				modulation();
 			count++;
-				 
-		}else{
-			while(!(sensor_2 && sensor_3)){		//不在线上
-				if(sensor_0 || sensor_1){	//右偏移
-					engine(RIGHT, 100);		//驱动右电机
-				}else if(sensor_4 || sensor_5){	//左偏移
-					engine(LEFT, 100);		//驱动左电机		
-				}	
-			}
 		}
+
+		modulation();
 	}
-	//engine(STOP, 100);
-	engine(FORWARD, 100);
 	
 }
 void turn(u8 direction)
 {
 	switch(direction){
 	case L:
-			engine(RIGHT, 100);
+			engine(RIGHT, 99);
 			while(!(sensor_2 && sensor_3));
 			break;
 	case R:
-			engine(LEFT, 100);
+			engine(LEFT, 99);
 			while(!(sensor_2 && sensor_3));
 			break;
 	case BACK:
-			engine(LEFT, 100);
+			engine(LEFT, 99);
 			while(!(sensor_2 && sensor_3));
 			break;
 	default:break;
 	}
-	engine(STOP, 100);
+	engine(STOP, 99);
 }

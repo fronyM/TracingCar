@@ -23,7 +23,6 @@ void send_info(u8 *info ,u8 count)
 		SBUF = *(info++);
 		while(!TI);
 		TI=0;
-
 	}
 }
 

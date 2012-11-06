@@ -1,5 +1,7 @@
 #include "drivers.h"
 #include "tracing/tracing.h"
+#include "zigbee/zigbee.h"
+#include "zigbee/car.h"
 #include <reg51.h>
 
 sbit sensor_0 = SENSOR^0;  //ÓÒ ¡ú ×ó
@@ -11,18 +13,20 @@ sbit sensor_5 = SENSOR^5;
 
 void init()
 {
-	timerInit();
+	init_serial();
+	PWMInit();
 	found_path(STAT);
+	while(!(sensor_0 || sensor_1 || sensor_2 || sensor_3 || sensor_4 || sensor_5));
 }
 
 void main()
 {
 	init();
-//	engine(FORWARD, 100);
-//	engine(RIGHT, 100);	
-	while(1)
+	tracing(1);
+	engine(STOP, 99);
+	while(1);
 	{
-		tracing(1);
-//		turn(R);
+	//	engine(FORWARD, 99);
+
 	}	
 }

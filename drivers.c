@@ -1,5 +1,4 @@
 #include "drivers.h"
-#include "types.h"
 
 void PWMInit()
 {

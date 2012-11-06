@@ -164,7 +164,6 @@ pip-log.txt
 
 Drivers
 *.M51
-*.hex
 *.lnp
 *.plg
 *.uvgui.Administrator
@@ -173,3 +172,4 @@ Drivers
 *.LST
 zigbee
 MMA7260
+keil/*

@@ -1,7 +1,4 @@
-#include "i2c.h"
-#include "types.h"
-#include "delay.h"
-#include "mma7260.h"
+#include "../head/mma7260.h"
 
 u8 RecvMMA7620(u8 Channel)	 //CHENNEL(0-3)
 {

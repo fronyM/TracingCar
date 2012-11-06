@@ -1,6 +1,5 @@
-#include "car.h"
-#include <reg51.h>
-#include "types.h"
+#include "../head/car.h"
+
 
 bit begin = 0;
 u8 count = 0;

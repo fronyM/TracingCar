@@ -1,28 +1,33 @@
-#include "drivers.h"
-#include "tracing/tracing.h"
+#include "../head/drivers.h"
+#include "../head/tracing.h"
+#include "../head/zigbee.h"
+#include "../head/car.h"
+#include "../head/1602.h"
 #include <reg51.h>
-
-sbit sensor_0 = SENSOR^0;  //ÓÒ ¡ú ×ó
-sbit sensor_1 = SENSOR^1;
-sbit sensor_2 = SENSOR^2;
-sbit sensor_3 = SENSOR^3;
-sbit sensor_4 = SENSOR^4;
-sbit sensor_5 = SENSOR^5;
 
 void init()
 {
-	timerInit();
-	found_path(STAT);
+	init_serial();
+	init_1602();
+	PWMInit();
+	found_path(T_STAT);
+	while(!(T_RIGHT || T_LEFT || T_MID));
 }
 
 void main()
 {
 	init();
-//	engine(FORWARD, 100);
-//	engine(RIGHT, 100);	
-	while(1)
+//	write_data(0x31);
+//	write_com(0x80+0x40);
+//	write_char("1602&595");
+
+
+	tracing(1);
+	engine(STOP, 99);
+
+	while(1);
 	{
-		tracing(1);
-//		turn(R);
+	//	engine(FORWARD, 99);
+
 	}	
 }

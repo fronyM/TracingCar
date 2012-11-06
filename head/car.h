@@ -1,5 +1,7 @@
 #include "types.h"
 #include "zigbee.h"
+#include <reg51.h>
+#include "types.h"
 
 
 #ifndef __CAR_H__

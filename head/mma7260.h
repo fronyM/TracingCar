@@ -1,4 +1,7 @@
 #include "types.h"
+#include "i2c.h"
+#include "delay.h"
+
 #ifndef __MMA7620_H__
 #define __MMA7620_H__
 

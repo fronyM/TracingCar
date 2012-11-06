@@ -13,14 +13,16 @@ void main()
 
 
 	while(1){
-		send_info(number,3);	
-		MsDelay(100);
+//		send_info(number,3);	
+//		MsDelay(100);
+//
+//		while(begin)
+//		{
+//			P1 = car.x;
+//			send_info(number,3);
+//		}
+while(begin)P1 = car.x;
 
-		while(begin)
-		{
-			P1 = car.x;
-			send_info(number,3);
-		}
 	}
 }
 

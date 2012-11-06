@@ -1,4 +1,6 @@
 #include "types.h"
+#include "delay.h"
+#include "types.h"
 
 #ifndef __REG51_H__
 #ifndef __REG51_H___

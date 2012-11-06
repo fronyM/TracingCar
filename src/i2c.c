@@ -1,6 +1,5 @@
-#include "i2c.h"
-#include "delay.h"
-#include "types.h"
+#include "../head/i2c.h"
+
 void InitI2c()
 {
 	scl = 1;

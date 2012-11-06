@@ -1,6 +1,6 @@
 #include <reg51.h>
-#include "zigbee.h"
-#include "types.h"
+#include "../head/zigbee.h"
+#include "../head/types.h"
 
 
 	
@@ -23,7 +23,6 @@ void send_info(u8 *info ,u8 count)
 		SBUF = *(info++);
 		while(!TI);
 		TI=0;
-
 	}
 }
 

@@ -31,7 +31,7 @@ void modulation()
 			if(sensor_0 || sensor_1){	//右偏移
 				engine(RIGHT, 99);		//驱动右电机
 			}else if(sensor_4 || sensor_5){	//左偏移
-				engine(LEFT, 99);		//驱动左电机		
+				engine(LEFT, 99);		//驱动左电机			   
 			}	
 		}
 	}
@@ -49,11 +49,10 @@ void tracing(u8 const sum)
 	u8 count = 0; //已寻线数
 	while(sum != count){		//未寻到sum条线
 		if(((sensor_4 && sensor_5) || (sensor_0 && sensor_1)) && (sensor_2 && sensor_3)){
-			while( sensor_0 || sensor_1 || sensor_4 || sensor_5)
+			while(sensor_0 || sensor_1 || sensor_4 || sensor_5)
 				modulation();
 			count++;
 		}
-
 		modulation();
 	}
 	

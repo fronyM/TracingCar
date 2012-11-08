@@ -1,29 +1,30 @@
-#include "zigbee.h"
-#include "types.h"
-#include "delay.h"
+#include "../head/zigbee.h"
+#include "../head/types.h"
+#include "../head/delay.h"
 #include <reg51.h>
-#include "car.h"
+#include "../head/car.h"
 
 
-u8 number[] = {0x01,0x02,0xaa};
+u8 number[] = {0xaa, 0x02, 0xaa};
 
 void main()
 {
 	init_serial();
 
-
-	while(1){
-//		send_info(number,3);	
+	send_info(number,3);
+	while(1){ 
+		while(begin){
+			P1 = car.x;
+			send_info(number,1);	
+		}
 //		MsDelay(100);
 //
 //		while(begin)
 //		{
 //			P1 = car.x;
 //			send_info(number,3);
-//		}
-while(begin)P1 = car.x;
-
-	}
+//		}*/
+	} 
 }
 
 

@@ -1,70 +1,67 @@
 #include "../head/tracing.h"
 
 
-void found_path(u8 const locate)
-{
-	if(locate == T_STAT ){		//stat
-		while(SENSOR == ~0x3F){
-			engine(FORWARD, 99);	
-		}
-	}else if(locate == T_TEMPA){	//temp stopA
-		
-	}else if(locate == T_TEMPB){	//temp stopB
-	
-	}		
-}
 
 void modulation()
 {
-	if(sensor_2 && sensor_3){
-		engine(FORWARD, 99);						 
-	}else{
-		while(!T_ONLINE){				//不在线上
-			if(T_RIGHT){				//右偏移
-				engine(RIGHT, 99);		//驱动右电机
-			}else if(T_LEFT){			//左偏移
-				engine(LEFT, 99);		//驱动左电机			   
-			}	
+	if(!(((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3))){
+		do{
+			while(sensor_0 || sensor_1){
+				engine(LEFT, SPEED);
+				if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
+			}
+			while(sensor_4 || sensor_5){
+				engine(RIGHT, SPEED);
+				if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
+			}
+			while(!(sensor_0 || sensor_1 || sensor_4 || sensor_5))
+			{
+				engine(FORWARD, SPEED);
+				if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
+			}
+		}while(!(((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)));
+	}
+
+	while(sensor_0 || sensor_1 || sensor_4 || sensor_5){
+		if(sensor_0 && sensor_1){
+			do{
+				if(sensor_4 || sensor_5){
+					engine(RIGHT, SPEED);
+					while(sensor_4 || sensor_5);
+				}else if(!sensor_3){
+					engine(LEFT, SPEED);
+					while(sensor_3);
+				}
+				engine(FORWARD, SPEED);
+			}while(sensor_0 || sensor_1);
+		}else if(sensor_4 && sensor_5){
+			do{
+				if(sensor_0 || sensor_1){
+					engine(LEFT, SPEED);
+					while(sensor_0 || sensor_1);
+				}else if(!sensor_2){
+					engine(RIGHT, SPEED);
+					while(sensor_2);
+				}
+				engine(FORWARD, SPEED);
+			}while(sensor_4 || sensor_5);
+		
 		}
 	}
-	engine(FORWARD, 99);	
+	UsDelay(200);	
 }
 
-/*
-* 	sum	要寻线数
-*
-*
-*
-*/
-void tracing(u8 const sum)
+void tracing(u8 const count)
 {
-	u8 count = 0; //已寻线数
-	while(sum != count){		//未寻到sum条线
-		if(T_FOUND){
-			while(T_RIGHT || T_LEFT)
-				modulation();
-			count++;
+	u8 i;
+	if(count){
+		for(i = 0; i < count;)
+		{
+			modulation();
+			i++;
 		}
-		modulation();
+	}else{
+		engine(FORWARD, SPEED);
+		while(sensor_0 || sensor_1 || sensor_2 || sensor_3 || sensor_4 || sensor_5);
 	}
-	
-}
-void turn(u8 direction)
-{
-	switch(direction){
-	case T_L:
-			engine(RIGHT, 99);
-			while(!(sensor_2 && sensor_3));
-			break;
-	case T_R:
-			engine(LEFT, 99);
-			while(!(sensor_2 && sensor_3));
-			break;
-	case T_BACK:
-			engine(LEFT, 99);
-			while(!(sensor_2 && sensor_3));
-			break;
-	default:break;
-	}
-	engine(STOP, 99);
 }

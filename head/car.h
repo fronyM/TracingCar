@@ -10,8 +10,8 @@
 /*************
 *	haed of infomation
 **************/
-#define	HEAD_H	0XFF
-#define	HEAD_L	0XFF
+#define	HEAD_H	0xff
+#define	HEAD_L	0xff
 #define	MASTER	0x00
 #define	CAR_1	0x01
 #define	CAR_2	0x02
@@ -57,7 +57,7 @@ extern car_t car;
 //extern u8 car_recv[];
 //extern void init_car();
 extern bit begin;
-
+extern u8 car_send[];
 
 
 

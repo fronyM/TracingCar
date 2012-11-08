@@ -1,6 +1,5 @@
-#include <reg51.h>
 #include "../head/zigbee.h"
-#include "../head/types.h"
+
 
 
 	
@@ -15,14 +14,21 @@ void init_serial()
 	EA=1;	
 }
 
-
-void send_info(u8 *info ,u8 count)
+void send_byte(u8 const b)
 {
-	while(count--)
-	{
-		SBUF = *(info++);
-		while(!TI);
-		TI=0;
+	SBUF = b;
+	while(!TI);
+	TI=0;
+
+
+}
+
+
+void send_info(u8 const *info ,u8 count)
+{
+	u8 i;
+	for(i = 0; i < count; i++){
+		send_byte(*(info++));
 	}
 }
 

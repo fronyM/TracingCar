@@ -9,6 +9,22 @@ sbit rw = P0^4;
 sbit lcde = P0^5;
 
 
+void print(u8 *c, ...)
+{
+	va_list args;
+	u8 *s;
+	u8 va;
+	va_start(args, c);
+	for(s = c; *s != '\0'; s++){
+		if(*s == '%'){
+			va = va_arg(args, u8);
+			write_data(va);
+			continue;
+		}
+		write_data(*s);
+	}
+}
+
 void init_1602()
 {
 	write_com(0x38);

@@ -5,22 +5,24 @@ u8 current = 0x00;
 void modulation()
 {
 	do{
-		while(sensor_0 || sensor_1){
-			engine(LEFT, SPEED);
-			if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
-		}
-		while(sensor_4 || sensor_5){
-			engine(RIGHT, SPEED);
-			if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
-		}
-		while(!(sensor_0 || sensor_1 || sensor_4 || sensor_5))
-		{
-			engine(FORWARD, SPEED);
-			if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
-		}
+		do{
+			while(sensor_0 || sensor_1){
+				engine(LEFT, SPEED);
+				if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
+			}
+			while(sensor_4 || sensor_5){
+				engine(RIGHT, SPEED);
+				if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
+			}
+			while(!(sensor_0 || sensor_1 || sensor_4 || sensor_5))
+			{
+				engine(FORWARD, SPEED);
+				if((((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)))break;
+			}
+		}while(!(((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)));
+		MsDelay(2);
 	}while(!(((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3)));
 	
-	engine(STOP, SPEED);
 
 
 	if(!(sensor_0 || sensor_1 || sensor_2 || sensor_3 || sensor_4 || sensor_5)){
@@ -54,6 +56,7 @@ void modulation()
 		}while(sensor_0 || sensor_1 || sensor_4 || sensor_5);
 	}
 	engine(STOP, SPEED);
+
 
 	UsDelay(100);	
 }

@@ -19,9 +19,9 @@
 #define TG_A		2	
 #define	TG_B		3
 #define TG_C		4
-#define	TG_D		5
-#define TG_E		6
-#define TG_F		7
+#define	TG_D		(5 + 1)
+#define TG_E		(6 + 1)
+#define TG_F		(7 + 1)
 
 #define	TG_TEMPA	(9	-	current)
 #define	TG_TEMPB	(11	-	current)

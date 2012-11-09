@@ -6,17 +6,14 @@ void PWMInit()
     CH=0;
     CL=0;
     CMOD=0x00;
-	CR=1;
+    CR=1;
 }
 
 void PWM0(u8 Fosc_0)      //Fosc_0为占空比设置形参
 {
     static tmp = 0;
-<<<<<<< HEAD
     if(tmp != 100 - Fosc_0) {
-=======
   	if(tmp != 100 - Fosc_0) {
->>>>>>> 8d2d107701b55c5fea2910df72d20151a82350c9
         tmp = 100 -Fosc_0;
         CCAP0H=CCAP0L=((tmp)*25)/10; 
         CCAPM0=0X42;                        //8位PWM输出，无中断

@@ -1,29 +1,31 @@
 #include "../head/1602.h"
 
-sbit sck = P0^0;
-sbit ser = P0^1;
-sbit rck = P0^2;
+//sbit sck = P0^0;
+//sbit ser = P0^1;
+//sbit rck = P0^2;
 
 sbit rs = P0^3;
 sbit rw = P0^4;
 sbit lcde = P0^5;
 
+char code int2charLCD[] = "0123456789";
 
-void print(u8 *c, ...)
-{
-	va_list args;
-	u8 *s;
-	u8 va;
-	va_start(args, c);
-	for(s = c; *s != '\0'; s++){
-		if(*s == '%'){
-			va = va_arg(args, u8);
-			write_data(va);
-			continue;
-		}
-		write_data(*s);
-	}
-}
+
+//void print(u8 *c, ...)
+//{
+//	va_list args;
+//	u8 *s;
+//	u8 va;
+//	va_start(args, c);
+//	for(s = c; *s != '\0'; s++){
+//		if(*s == '%'){
+//			va = va_arg(args, u8);
+//			write_data(va);
+//			continue;
+//		}
+//		write_data(*s);
+//	}
+//}
 
 void init_1602()
 {
@@ -36,19 +38,12 @@ void init_1602()
 
 void write_com(u8 com)
 {
-	u8 i ;
+//	u8 i ;
 	rs=0;
 	rw=0;
 	lcde=0;
 
-	rck=0;
-	for(i = 8; i > 0; i--)
-	{
-		sck=0;
-		ser=(com >> ( i - 1))&0x01;
-		sck=1;		
-	}
-	rck=1;
+	P2 = com;
 
 	UsDelay(40);
 	lcde=1;
@@ -59,19 +54,12 @@ void write_com(u8 com)
 
 void write_data(u8 dat)
 {
-	u8 i ;
+//	u8 i ;
 	rs = 1;
 	rw = 0;
 	lcde = 0;
 
-	rck = 0;
-	for(i = 8; i > 0; i--)
-	{
-		sck = 0;
-		ser=(dat >> ( i - 1)) & 0x01;
-		sck = 1;		
-	}
-	rck = 1;
+	P2 = dat;
 
 	UsDelay(40);
 	lcde = 1;
@@ -86,4 +74,11 @@ void write_char(u8 *c)
 		write_data(*(c++));
 }
 
-
+void write_number(char number)
+{
+	unsigned char x,y;
+	x=number/10;
+	y=number-10*x;
+	write_data(int2charLCD[x]);
+	write_data(int2charLCD[y]);
+}

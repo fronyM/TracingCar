@@ -16,6 +16,7 @@ extern void init_1602();
 extern void write_data(u8);
 extern void write_com(u8);
 extern void write_char(u8 *);
+extern void write_number(char );
 
 
 #endif

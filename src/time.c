@@ -14,7 +14,7 @@ void initTimer0(void)
     TL0 = 0x00;
     EA = 1;
     ET0 = 1;
-    TR0 = 1;
+    TR0 = 0;
 }
 
 void setTimer(u8 act)

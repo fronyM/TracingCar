@@ -1,12 +1,12 @@
 #include "../head/1602.h"
 
-sbit sck = P0^0;
-sbit ser = P0^1;
-sbit rck = P0^2;
+//sbit sck = P0^0;
+//sbit ser = P0^1;
+//sbit rck = P0^2;
 
-sbit rs = P0^3;
-sbit rw = P0^4;
-sbit lcde = P0^5;
+sbit rs = P1^6;
+sbit rw = P1^7;
+sbit lcde = P2^6;
 
 
 void print(u8 *c, ...)
@@ -36,19 +36,12 @@ void init_1602()
 
 void write_com(u8 com)
 {
-	u8 i ;
+//	u8 i ;
 	rs=0;
 	rw=0;
 	lcde=0;
 
-	rck=0;
-	for(i = 8; i > 0; i--)
-	{
-		sck=0;
-		ser=(com >> ( i - 1))&0x01;
-		sck=1;		
-	}
-	rck=1;
+	P0 = com;
 
 	UsDelay(40);
 	lcde=1;
@@ -59,19 +52,12 @@ void write_com(u8 com)
 
 void write_data(u8 dat)
 {
-	u8 i ;
+//	u8 i ;
 	rs = 1;
 	rw = 0;
 	lcde = 0;
 
-	rck = 0;
-	for(i = 8; i > 0; i--)
-	{
-		sck = 0;
-		ser=(dat >> ( i - 1)) & 0x01;
-		sck = 1;		
-	}
-	rck = 1;
+	P0 = dat;
 
 	UsDelay(40);
 	lcde = 1;

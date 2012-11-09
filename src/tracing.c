@@ -52,9 +52,9 @@ void modulation()
 				}while(sensor_4 || sensor_5);		
 			}
 		}while(sensor_0 || sensor_1 || sensor_4 || sensor_5);
-		engine(STOP, SPEED);
-
 	}
+	engine(STOP, SPEED);
+
 	UsDelay(100);	
 }
 

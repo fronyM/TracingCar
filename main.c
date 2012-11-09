@@ -13,9 +13,11 @@ void init()
 void main()
 {
 	init();	
-	tracing(2);
+//	engine(FORWARD, 99);
+	target(TG_F);
+//	target(TG_TEMPA);
 	engine(STOP, SPEED);
-
+//
 	while(1);
 	{
 		while(sensor_0)engine(FORWARD, SPEED);

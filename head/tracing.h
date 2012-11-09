@@ -16,7 +16,17 @@
 #define	T_TEMPA	1
 #define	T_TEMPB	2
 
-#define SPEED	70
+#define TG_A		2	
+#define	TG_B		3
+#define TG_C		4
+#define	TG_D		5
+#define TG_E		6
+#define TG_F		7
+
+#define	TG_TEMPA	(9	-	current)
+#define	TG_TEMPB	(11	-	current)
+
+#define SPEED	80
 
 sbit sensor_0 = SENSOR^0;  //×ó ¡ú ÓÒ		 0	1	2	3	4	5
 sbit sensor_1 = SENSOR^1;  //				 x	x	1	1	x	x		T_ONWAY	=	(~(sensor_0 || sensor_1) && ~(sensor_4 || sensor_5) && (sensor_2 && sensor_3))	
@@ -30,5 +40,7 @@ sbit sensor_7 = SENSOR^7;
 extern void found_path(u8 const);
 extern void Locate(u8 const);
 extern void tracing(u8 const);
+extern void target(u8 const);
+extern u8 current;
 
 #endif

@@ -4,9 +4,9 @@
 //sbit ser = P0^1;
 //sbit rck = P0^2;
 
-sbit rs = P0^3;
-sbit rw = P0^4;
-sbit lcde = P0^5;
+sbit rs = P1^6;
+sbit rw = P1^7;
+sbit lcde = P2^6;
 
 char code int2charLCD[] = "0123456789";
 
@@ -43,7 +43,7 @@ void write_com(u8 com)
 	rw=0;
 	lcde=0;
 
-	P2 = com;
+	P0 = com;
 
 	UsDelay(40);
 	lcde=1;
@@ -59,7 +59,7 @@ void write_data(u8 dat)
 	rw = 0;
 	lcde = 0;
 
-	P2 = dat;
+	P0 = dat;
 
 	UsDelay(40);
 	lcde = 1;

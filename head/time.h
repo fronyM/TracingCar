@@ -6,6 +6,7 @@
 
 #define START 1
 #define STOP  0
+#define WAIT
 
 extern bit READY_FLAG;
 

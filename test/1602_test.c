@@ -10,7 +10,7 @@ void main()
 	write_data(0x31);
 	write_com(0x01);
 	write_char("1602&595");
-	print("a%a%a%",a,a,a);
+//	print("a%a%a%",a,a,a);
 	while(1)
 	{
 	}

@@ -4,9 +4,9 @@
 //sbit ser = P0^1;
 //sbit rck = P0^2;
 
-sbit rs = P1^6;
-sbit rw = P1^7;
-sbit lcde = P2^6;
+sbit rs = P0^7;
+sbit rw = P0^6;
+sbit lcde = P0^5;
 
 char code int2charLCD[] = "0123456789";
 
@@ -43,13 +43,13 @@ void write_com(u8 com)
 	rw=0;
 	lcde=0;
 
-	P0 = com;
+	P2 = com;
 
-	UsDelay(40);
-	lcde=1;
-	UsDelay(160);
-	lcde=0;
-	UsDelay(20);	
+	UsDelay(200);
+	lcde = 1;
+	UsDelay(800);
+	lcde = 0;
+	UsDelay(100);	
 }
 
 void write_data(u8 dat)
@@ -59,13 +59,13 @@ void write_data(u8 dat)
 	rw = 0;
 	lcde = 0;
 
-	P0 = dat;
+	P2 = dat;
 
-	UsDelay(40);
+	UsDelay(200);
 	lcde = 1;
-	UsDelay(160);
+	UsDelay(800);
 	lcde = 0;
-	UsDelay(20);	
+	UsDelay(100);	
 }
 
 void write_char(u8 *c)

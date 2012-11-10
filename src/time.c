@@ -41,8 +41,10 @@ void main(void)
     
     init_1602();
 	initTimer0();
+	write_data(0xaa);
+
 //	timePrint();
-	
+	setTimer(START);
 	while(1);
 }
 

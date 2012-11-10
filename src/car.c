@@ -3,7 +3,7 @@
 
 bit begin = 0;
 u8 count = 0, temp;
-car_t car = { 1,0,0};
+car_t car = { 1, 0, 0, 0};
 u8 car_recv[] = {HEAD_H, HEAD_L, 0x00, 0x00, 0x00};
 u8 car_send[] = {HEAD_H, 0x01, MASTER, 0x00, 0x00};
 

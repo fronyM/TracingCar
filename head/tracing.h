@@ -2,6 +2,7 @@
 #include "types.h"
 #include "drivers.h"
 #include "delay.h"
+#include "car.h"
 
 					
 #ifndef	__TRACING_H_
@@ -19,14 +20,29 @@
 #define TG_A		2	
 #define	TG_B		3
 #define TG_C		4
-#define	TG_D		(5 + 1)
-#define TG_E		(6 + 1)
-#define TG_F		(7 + 1)
+#define	TG_D		(5)
+#define TG_E		(6)
+#define TG_F		(7 )
 
 #define	TG_TEMPA	(9	-	current)
-#define	TG_TEMPB	(11	-	current)
+#define	TG_TEMPB	(10	-	current)
 
 #define SPEED	80
+
+#define	RIGHT_A			(sensor_0 && sensor_1)
+#define	RIGHT_O			(sensor_0 || sensor_1)
+#define	LEFT_A			(sensor_4 && sensor_5)
+#define	LEFT_O			(sensor_4 || sensor_5)
+#define	MID_A			(sensor_2 && sensor_3)
+#define	MID_O			(sensor_2 || sensor_3)
+#define FOUND_BLACK		(((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3))
+#define FOUND_WHITE		(!(sensor_0 || sensor_1 || sensor_2 || sensor_3 || sensor_4 || sensor_5))
+#define	ON_WAY			(!(sensor_0 || sensor_1 || sensor_4 || sensor_5))
+#define	NO_WAY			(sensor_0 || sensor_1 || sensor_4 || sensor_5)	
+
+#define	BLACK			0
+#define	WHITE			1
+	
 
 sbit sensor_0 = SENSOR^0;  //×ó ¡ú ÓÒ		 0	1	2	3	4	5
 sbit sensor_1 = SENSOR^1;  //				 x	x	1	1	x	x		T_ONWAY	=	(~(sensor_0 || sensor_1) && ~(sensor_4 || sensor_5) && (sensor_2 && sensor_3))	
@@ -41,6 +57,7 @@ extern void found_path(u8 const);
 extern void Locate(u8 const);
 extern void tracing(u8 const);
 extern void target(u8 const);
+extern void found_line(u8 const);
 extern u8 current;
 
 #endif

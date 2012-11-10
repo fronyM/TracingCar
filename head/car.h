@@ -51,6 +51,7 @@ typedef struct Car{
 	u8 number;
 	u8 x;
 	u8 y;
+	u8 current;
 } car_t;
 
 extern car_t car;
@@ -58,6 +59,7 @@ extern car_t car;
 //extern void init_car();
 extern bit begin;
 extern u8 car_send[];
+extern u8 car_recv[];
 
 
 

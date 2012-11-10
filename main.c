@@ -14,14 +14,16 @@ void main()
 {
 	init();	
 //	engine(FORWARD, 99);
-	target(TG_F);
-//	target(TG_TEMPA);
+//	target(TG_F);
+	target(TG_A);
+//	found_line(WHITE);
 	engine(STOP, SPEED);
 //
 	while(1);
 	{
-		while(sensor_0)engine(FORWARD, SPEED);
-		engine(STOP, SPEED);
+//		if(FOUND_WHITE)engine(STOP, SPEED);
+//		while(sensor_0)engine(FORWARD, SPEED);
+		
 	}
 	
 }

@@ -4,8 +4,9 @@
 #ifndef __TIME_H_
 #define __TIME_H_
 
-#define START 1
 #define STOP  0
+#define START 1
+#define WAIT  2
 
 extern bit READY_FLAG;
 

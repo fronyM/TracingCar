@@ -4,7 +4,7 @@
 static u8 count = 0;
 static u8 sec = 0;
 static u8 min = 0;
-bit START_FLAG = 0;
+bit READY_FLAG = 0;
 static bit F_FLAG = 0;
 
 void initTimer0(void)
@@ -23,6 +23,10 @@ void setTimer(u8 act)
 	    TR0 = 1;
 	if(act == STOP)
 	    TR0 = 0;
+    if(act == WAIT) {
+        READY_FLAG = 0;
+        F_FLAG = 0;
+    }
 }
 
 void timePrint()

@@ -7,7 +7,7 @@
 #define START 1
 #define STOP  0
 
-extern bit START_FLAG;
+extern bit READY_FLAG;
 
 extern void setTimer(u8 );
 #endif

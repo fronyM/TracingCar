@@ -21,7 +21,7 @@ void setTimer(u8 act)
 {
     if(act == START)
 	    TR0 = 1;
-	if(act == STOP)
+	if(act == P)
 	    TR0 = 0;
     if(act == WAIT) {
         READY_FLAG = 0;
@@ -38,19 +38,22 @@ void timePrint()
 	write_number(min);
 	write_char(":");
 	write_number(sec);
+	write_com(CR);
+	write_char("found lines:");
+	write_number(car.current);
 
 }
-void main(void)
-{
-    
-    init_1602();
-	initTimer0();
-	write_data(0xaa);
-
-//	timePrint();
-	setTimer(START);
-	while(1);
-}
+//void main(void)
+//{
+//    
+//    init_1602();
+//	initTimer0();
+//	write_data(0xaa);
+//
+////	timePrint();
+//	setTimer(START);
+//	while(1);
+//}
 
 void Timer0Interrupt(void) interrupt 1
 {
@@ -63,7 +66,7 @@ void Timer0Interrupt(void) interrupt 1
 		timePrint();
 		if(sec == 30 && F_FLAG == 0) {
 		    F_FLAG = 1;
-			START_FLAG = 1;
+			READY_FLAG = 1;
 		}
 		if (sec >= 60) {
 		    sec = 0;

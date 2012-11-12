@@ -13,15 +13,15 @@ def getResponse():
     response = zigbee.read(5)
     response = [ord(c) for c in response]
     print response
-    if(not(response[0] == 0xff and response[1] == 0x01)):
+    if(not(response[0] == 0xff and response[2] == 0x00)):
         sys.stderr.write('Car ' + str(response[2]) + ' returned error\n')
         sys.exit(2)
     if(response[4] == 0x00):
-        print 'Car ' + str(response[2]) + ' got a tool from ' + places[response[3]]
+        print 'Car ' + str(response[1]) + ' got a tool from ' + places[response[3]]
     elif(response[4] == 0x01):
-        print 'Car ' + str(response[2]) + ' parking at ' + places[response[3]]
+        print 'Car ' + str(response[1]) + ' parking at ' + places[response[3]]
     elif(response[4] == 0x02):
-        print 'Car ' + str(response[2]) + ' returned at Gateway. '
+        print 'Car ' + str(response[1] ) + ' returned at Gateway. '
     else:
         sys.stderr.write('received data incorrcet.\n')
         sys.exit(2)
@@ -34,6 +34,8 @@ def send(car, dest1, dest2):
     sendbuf = array.array('B', sendbuf).tostring()
     zigbee.write(sendbuf)
     ack = zigbee.read()
+    print ord(ack)
+    print dest1
     if(ord(ack) != dest1):
         sys.stderr.write('communication error.\n')
         sys.exit(2)

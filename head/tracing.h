@@ -3,31 +3,29 @@
 #include "drivers.h"
 #include "delay.h"
 #include "car.h"
+#include "interface.h"
 
 					
 #ifndef	__TRACING_H_
 #define __TRACING_H_
 
-#define SENSOR	P2	//P2^0-p2^5
 #define T_L		0
 #define	T_R		1
 #define	T_BACK	3
 
-#define	T_STAT	0
-#define	T_TEMPA	1
-#define	T_TEMPB	2
+#define	TG_START	0
+#define	TG_TEMPA	1
+#define	TG_TEMPB	2
 
-#define TG_A		2	
-#define	TG_B		3
-#define TG_C		4
-#define	TG_D		(5)
-#define TG_E		(6)
-#define TG_F		(7 )
-
-#define	TG_TEMPA	(9	-	current)
-#define	TG_TEMPB	(10	-	current)
+#define TG_A		3	
+#define	TG_B		4
+#define TG_C		5
+#define	TG_D		6
+#define TG_E		7
+#define TG_F		8
 
 #define SPEED	80
+#define DELAY	1
 
 #define	RIGHT_A			(sensor_0 && sensor_1)
 #define	RIGHT_O			(sensor_0 || sensor_1)
@@ -37,8 +35,10 @@
 #define	MID_O			(sensor_2 || sensor_3)
 #define FOUND_BLACK		(((sensor_0 && sensor_1) || (sensor_4 && sensor_5)) && (sensor_2 && sensor_3))
 #define FOUND_WHITE		(!(sensor_0 || sensor_1 || sensor_2 || sensor_3 || sensor_4 || sensor_5))
-#define	ON_WAY			(!(sensor_0 || sensor_1 || sensor_4 || sensor_5))
+#define	ON_WAY			(!(sensor_0 || sensor_1 || sensor_4 || sensor_5) && sensor_2 && sensor_3)
 #define	NO_WAY			(sensor_0 || sensor_1 || sensor_4 || sensor_5)	
+#define	SENSOR_2		(!(sensor_0 || sensor_1 || sensor_3 || sensor_4 || sensor_5) && sensor_2)
+#define	SENSOR_3		(!(sensor_0 || sensor_1 || sensor_2 || sensor_4 || sensor_5) && sensor_3)
 
 #define	BLACK			0
 #define	WHITE			1
@@ -58,6 +58,10 @@ extern void Locate(u8 const);
 extern void tracing(u8 const);
 extern void target(u8 const);
 extern void found_line(u8 const);
-extern u8 current;
+//extern void modulation();
+extern void turn(u8 const);
+extern void on_black();
+extern void a_line();
+//extern u8 current;
 
 #endif

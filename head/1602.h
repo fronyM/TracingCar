@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "types.h"
+#include "interface.h"
 		  
 
 #ifndef __1602_H_

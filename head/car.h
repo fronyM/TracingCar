@@ -52,6 +52,7 @@ typedef struct Car{
 	u8 x;
 	u8 y;
 	u8 current;
+	u8 status;
 } car_t;
 
 extern car_t car;

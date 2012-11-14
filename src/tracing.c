@@ -31,7 +31,7 @@ void found_line(u8 const colour)
 				}
 				break;
 			}while(!FOUND_BLACK);
-			MsDelay(20);
+			MsDelay(DELAY);
 		}while(!FOUND_BLACK);
 	}else if(WHITE == colour){
 		do{
@@ -63,7 +63,7 @@ void found_line(u8 const colour)
 
 				break;
 			}while(!FOUND_WHITE);
-			MsDelay(20);
+			MsDelay(DELAY);
 		}while(!FOUND_WHITE);
 	
 	}
@@ -71,10 +71,12 @@ void found_line(u8 const colour)
 
 }
 
-void a_line(){
+void a_line()
+{
 	found_line(BLACK);
 	on_black();
 }
+
 
 void on_black()
 {
@@ -106,23 +108,6 @@ void on_black()
 	engine(STOP, SPEED);
 }
 
-////void modulation()
-////{
-////	found_line(BLACK);
-////	
-////	if(FOUND_WHITE){
-//////		if(car.current == 0)
-//////		{
-//////			engine(LEFT, SPEED);
-//////			do{
-//////				MsDelay(DELAY);
-//////			}while(!ON_WAY);
-//////		}
-////	}else{
-////		on_black();
-////	}
-////	engine(STOP, SPEED);
-////}
 
 void turn(u8 const direction)
 {
@@ -143,219 +128,407 @@ void turn(u8 const direction)
 	case BACKWARD :
 		engine(BACKWARD, SPEED);
 		while(!(RIGHT_A || LEFT_A));
+
 		break;
-	case FORWARD :break;
+	case FORWARD :
+		break;
+	case L_BACKWARD:
+		engine(L_BACKWARD, SPEED);
+		while(!ON_WAY);
+		break;
+	case R_BACKWARD:
+		engine(R_BACKWARD, SPEED);
+		while(!ON_WAY);
+		break;
 	default:break;
 	}
 	engine(STOP, SPEED);
-}
-void to_a()
-{
-	found_line(BLACK);
-//	on_black();
-	turn(LEFT);
-	a_line();
-
-
-	turn(LEFT);
-	found_line(WHITE);
-	car.current = TG_A;
-
-}
-
-void to_b()
-{
-	found_line(BLACK);
-	turn(LEFT);
-
-	a_line();
-	
-
-	found_line(BLACK);
-	turn(RIGHT);
-	found_line(WHITE);
-	car.current = TG_B;
-
-}
-
-void to_c()
-{
-	found_line(BLACK);
-	turn(LEFT);
-
-	a_line();
-	a_line();
-
-	found_line(BLACK);
-	turn(LEFT);
-	found_line(WHITE);
-	car.current = TG_C;
-
-}
-
-void to_d()
-{
-	found_line(BLACK);
-	turn(LEFT);
-
-	a_line();
-	a_line();
-	a_line();
-
-
-	found_line(BLACK);
-	turn(RIGHT);
-	found_line(WHITE);
-	car.current = TG_D;
-}
-
-
-void to_e()
-{
-	found_line(BLACK);
-	turn(LEFT);
-
-	a_line();
-	a_line();
-	a_line();
-	a_line();
-
-
-	found_line(BLACK);
-	turn(LEFT);
-	found_line(WHITE);
-	car.current = TG_E;
-}
-
-void to_f()
-{
-	found_line(BLACK);
-	turn(LEFT);
-
-	a_line();
-	a_line();
-	a_line();
-	a_line();
-	a_line();
-
-	found_line(BLACK);
-	turn(RIGHT);
-	found_line(WHITE);
-	car.current = TG_F;
 }
 
 void to_tempa()
 {
+	turn(BACKWARD);
 	switch(car.current){
 	case TG_A:
-		turn(BACKWARD);
 		turn(RIGHT);
    		turn(RIGHT);
-/*		a_line();
+
 		a_line();
 		a_line();
 		a_line();
 		a_line();
-		found_line(BLACK);
-		turn(LEFT);
-		found_line(BLACK);
-		engine(LEFT, SPEED);
-		while(FOUND_BLACK);
-		on_black();
-*/
-		engine(STOP, SPEED);
+		a_line();
+
 		break;
 	case TG_B:
-		turn(BACKWARD);
 		turn(LEFT);
 		turn(LEFT);
+
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+
 		break;
 	case TG_C:
-		turn(BACKWARD);
 		turn(RIGHT);
 		turn(RIGHT);
+
+		a_line();
+		a_line();
+		a_line();
+
 		break;
 	case TG_D:
-		turn(BACKWARD);
 		turn(LEFT);
 		turn(LEFT);
+
+		a_line();
+		a_line();
+
 		break;
 	case TG_E:
-		turn(BACKWARD);
 		turn(RIGHT);
 		turn(RIGHT);
+
+		a_line();
+
+		break;
+	case TG_F:
+		turn(LEFT);
+		turn(LEFT);
+
+
+		break;
+	default:break;
+	}
+	found_line(BLACK);
+	turn(LEFT);
+	found_line(BLACK);
+
+	engine(LEFT, SPEED);
+
+	while(RIGHT_O);
+	on_black();
+
+	engine(RIGHT, SPEED);
+	while(!FOUND_WHITE);
+
+	car.current = TG_TEMPA;
+	car.status = 1;
+
+	engine(STOP, SPEED);  
+}
+
+
+void to_tempb()
+{
+	turn(BACKWARD);
+	switch(car.current){
+	case TG_A:
+		turn(RIGHT);
+   		turn(RIGHT);
+
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+
+		break;
+	case TG_B:
+		turn(LEFT);
+		turn(LEFT);
+
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+
+
+		break;
+	case TG_C:
+		turn(RIGHT);
+		turn(RIGHT);
+
+		a_line();
+		a_line();
+		a_line();
+
+
+		break;
+	case TG_D:
+		turn(LEFT);
+		turn(LEFT);
+
+		a_line();
+		a_line();
+
+
+		break;
+	case TG_E:
+		turn(RIGHT);
+		turn(RIGHT);
+
+		a_line();
+
+
 		break;
 	case TG_F:
 		turn(BACKWARD);
 		turn(LEFT);
 		turn(LEFT);
+
 		break;
 	default:break;
 	}
+
+	found_line(BLACK);
+	turn(LEFT);
+
+	a_line();
+	found_line(BLACK);
+	turn(LEFT);
+
+	found_line(BLACK);
+	engine(LEFT, SPEED);
+	while(FOUND_BLACK);
+	on_black();
+	car.current = TG_TEMPB;
+	car.status = 1;
+
+
+	engine(STOP, SPEED);
+
 }
 
-void to_tempb()
+
+void to_start()
 {
-
+	if(car.current == TG_A || car.current == TG_C || car.current == TG_E)
+		turn(L_BACKWARD);
+	else if(car.current == TG_B || car.current == TG_D || car.current == TG_F)
+		turn(R_BACKWARD);
+	switch(car.current)
+	{
+	case TG_A:	 
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+		break;	
+	case TG_B:
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+		break;	
+	case TG_C:
+		a_line();
+		a_line();
+		a_line();
+		break;	
+	case TG_D:
+		a_line();
+		a_line();
+		break;	
+	case TG_E:
+		a_line();
+		break;	
+	case TG_F:
+		break;
+	default:
+		break;	
+	}
+	found_line(BLACK);
+	turn(LEFT);
+	found_line(BLACK);
+	on_black();
+	found_line(BLACK);
+	turn(LEFT);
+	found_line(BLACK);
+	on_black();
+	found_line(WHITE);
 }
+void to(u8 tg)
+{
+	switch(tg){
+	case TG_A:
+		found_line(BLACK);
+		turn(LEFT);
+		a_line();	
+	
+		turn(LEFT);
+		found_line(WHITE);
+		car.current = TG_A;
+		break;
+	case TG_B:
+		found_line(BLACK);
+		turn(LEFT);
+	
+		a_line();
+		
+		found_line(BLACK);
+		turn(RIGHT);
+		found_line(WHITE);
+		car.current = TG_B;
+		break;
+	case TG_C:
+	  	found_line(BLACK);
+		turn(LEFT);
+	
+		a_line();
+		a_line();
+	
+		found_line(BLACK);
+		turn(LEFT);
+		found_line(WHITE);
+		car.current = TG_C;
+		break;
+	case TG_D:
+		found_line(BLACK);
+		turn(LEFT);
+	
+		a_line();
+		a_line();
+		a_line();
+	
+	
+		found_line(BLACK);
+		turn(RIGHT);
+		found_line(WHITE);
+		car.current = TG_D;
+		break;
+	case TG_E:
+		found_line(BLACK);
+		turn(LEFT);
+	
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+	
+	
+		found_line(BLACK);
+		turn(LEFT);
+		found_line(WHITE);
+	
+		car.current = TG_E;
+		break;
+	case TG_F:
+		found_line(BLACK);
+		turn(LEFT);
+	
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+	
+		found_line(BLACK);
+		turn(RIGHT);
+		found_line(WHITE);
+		car.current = TG_F;
+		break;
+	case TG_TEMPA:
+		to_tempa();
+		break;
+	case TG_TEMPB:
+		to_tempb();
+		break;
+	case TG_START:
+		to_start();
+		break;
+	default:break;
+
+
+
+
+
+		
+	}
+}
+
+void back(u8 tg)
+{
+	turn(BACKWARD);
+	turn(R_BACKWARD);
+	found_line(BLACK);
+	turn(RIGHT);
+	engine(FORWARD, SPEED);
+	while(!RIGHT_A);
+	if(car.current == TG_F)
+		turn(LEFT);
+	else
+		turn(RIGHT);
+	switch(tg){
+	case TG_A:
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+	
+		turn(RIGHT);
+		found_line(WHITE);
+		car.current = TG_A;
+		break;
+	case TG_B:
+		a_line();
+		a_line();
+		a_line();
+		a_line();
+	
+		turn(LEFT);
+		found_line(WHITE);
+		car.current = TG_B;
+		break;
+	case TG_C:
+		a_line();
+		a_line();
+		a_line();
+	
+		turn(RIGHT);
+		found_line(WHITE);
+		car.current = TG_C;
+		break;
+	case TG_D:			
+		a_line();//**********
+		a_line();
+	
+		turn(LEFT);
+		found_line(WHITE);
+		car.current = TG_D;
+		break;
+	case TG_E:	
+		a_line();
+
+		turn(RIGHT);
+		found_line(WHITE);
+		car.current = TG_E;
+		break;
+	case TG_F:	
+	
+		found_line(WHITE);
+		car.current = TG_F;
+		break;
+	default:break;
+	}
+	engine(STOP, SPEED);
+}
+
+
 
 
 void tracing(u8 const tg)
 {
-/*
-	u8 i;
-	if(count){
-		for(i = 0; i < count;){
-			found_line(BLACK);
-			car.current = ++i;
-			if(car.current == TG_A - 1 || car.current == TG_F + 1){
-				turn(LEFT);
-			}
-		}
-	}else{
-		engine(FORWARD, SPEED);
-		while(sensor_0 || sensor_1 || sensor_2 || sensor_3 || sensor_4 || sensor_5);
-	}
-	engine(STOP, SPEED);
-*/
-//	u8 count;
-	switch(tg){
-	case TG_A:
-		to_a();
-		break;
-		
-	case TG_B:
-		to_b();
-		break;
-
-	case TG_C:
-		to_c();
-		break;
-
-	case TG_D:
-		to_d();
-		break;
-
-	case TG_E:
-		to_e();
-		break;
-
-	case TG_F:
-		to_f();
-		break;
-
-	case TG_TEMPA:
-		to_tempa();
-		break;
-
-	case TG_TEMPB:
-		to_tempb();
-		break;
-
-	default:break;
-	}
-	
+	if(car.current == TG_TEMPA || car.current == TG_TEMPB)
+		back(tg);
+	else
+		to(tg);	
 }
+
 
 void target(u8 const tg)
 {

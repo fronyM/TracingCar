@@ -31,7 +31,7 @@ void init()
 	init_1602();
 	initTimer0();
 	init_serial();
-	timePrint();
+ 	timePrint();		   
 	car.current = TG_START;
 
 }
@@ -46,37 +46,19 @@ void main()
 //	send_info(car_send, 5);	
 
 //	setTimer(START);
-	target(TG_B);
+/*	target(TG_F);
 	target(TG_TEMPA);
-	target(TG_B);
+	target(TG_F);
 	target(TG_START);
-//	turn(BACKWARD);
-//	target(TG_A);	
-//	target(TG_TEMPA);
-/*		found_line(BLACK);
-		turn(LEFT);
-		found_line(BLACK);
-	
-		engine(LEFT, SPEED);
-	
-		while(RIGHT_O);
-		on_black();
-
-		engine(RIGHT, SPEED);
-		while(!FOUND_WHITE);
-
-		car.current = TG_TEMPA;
-		car.status = 1;
-	
-		engine(STOP, SPEED);  
   */
-
-//	while(RIGHT_O);
-//	while(FOUND_BLACK);
-//	engine(STOP, SPEED);
-//	target(TG_TEMPA);
-
-
+//  	target(TG_C);
+//	turn(BACKWARD);
+//		engine(RIGHT, SPEED);
+	target(TG_F);
+	target(TG_TEMPA);
+	target(TG_F);
+	second_to(TG_A);
+	target(TG_START);
 	while(1);
 	{		
 	}

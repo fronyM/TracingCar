@@ -458,7 +458,7 @@ void back(u8 tg)
 	turn(RIGHT);
 	engine(FORWARD, SPEED);
 	while(!RIGHT_A);
-	if(car.current == TG_F)
+	if(tg == TG_F)
 		turn(LEFT);
 	else
 		turn(RIGHT);
@@ -530,6 +530,50 @@ void tracing(u8 const tg)
 }
 
 
+void second_to(u8 tg)
+{
+	s8  temp, count;
+	if(car.current < tg){
+//		turn(BACKWARD);
+		if(car.current == TG_A || car.current == TG_C || car.current == TG_E){
+			turn(L_BACKWARD);
+		}else{
+			turn(R_BACKWARD);
+		}	
+		count = tg - car.current;
+	}else{
+		if(car.current == TG_A || car.current == TG_C || car.current == TG_E){
+			turn(R_BACKWARD);
+		}else{
+			turn(L_BACKWARD);
+		}				
+		count = car.current - tg;
+	}
+	for(temp = count; temp > 0; temp--){
+		a_line();
+	}
+
+
+	if(car.current < tg){
+		if(tg == TG_A || tg == TG_C || tg == TG_E){
+			turn(LEFT);
+		}else{
+			turn(RIGHT);
+		}
+
+	}else{
+		if(tg == TG_A || tg == TG_C || tg == TG_E){
+			turn(RIGHT);
+		}else{
+			turn(LEFT);
+		}
+		
+	}
+	found_line(WHITE);
+	car.current = tg;	
+
+
+}
 void target(u8 const tg)
 {
 	tracing(tg);

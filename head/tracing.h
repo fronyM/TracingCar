@@ -4,6 +4,7 @@
 #include "delay.h"
 #include "car.h"
 #include "interface.h"
+#include "1602.h"
 
 					
 #ifndef	__TRACING_H_
@@ -62,6 +63,8 @@ extern void found_line(u8 const);
 extern void turn(u8 const);
 extern void on_black();
 extern void a_line();
+extern void to(u8);
+extern void second_to(u8);
 //extern u8 current;
 
 #endif
